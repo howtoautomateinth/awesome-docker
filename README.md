@@ -32,6 +32,8 @@ Docker uses a client-server architecture
     - listens for Docker API requests and manages Docker objects
   - The Docker registries
     - stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default
+  
+## Anatomy of container
 
 ### Anatomy of the docker container run expression
 > docker container run alphine echo "Hello World"
@@ -46,7 +48,7 @@ Docker uses a client-server architecture
   - container image
 - echo "Hello World"
   - process to run inside contaienr
-
+  
 ### Useful command for interacting with container
 #### Inspect
 > docker inspect -f "{{json Json-Key}}" <<Name/ID>> | jq
@@ -58,17 +60,13 @@ we can combined with grep and filter
   
 #### Exec
 > docker container exec -i -t <<Name/ID>> /bin/sh 
+
 - The flag -i signifies that we want to run the additional process interactively, and -t tells Docker that we want it to provide us with a TTY (a terminal emulator) for the command. Finally, the process we run is /bin/sh.
 
 #### Attach
 > docker container attach <<Name/ID>> 
 
 we can attach our Terminal's standard input, output, and error (or any combination of the three) to a running container using the ID or name of the container
-
-
-### Anatomy of container
-
-
 
 ## Futhur Reading
 - [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
