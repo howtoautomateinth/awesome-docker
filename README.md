@@ -23,7 +23,7 @@ Collection of containers knowledge
 
 ![Docker Architecture](https://docs.docker.com/engine/images/architecture.svg)
  
-### 3 Main players in docker 
+### 3 main players in docker 
 Docker uses a client-server architecture
   - The Docker client (docker)
     - the primary way that many Docker users interact with Docker
