@@ -48,6 +48,7 @@ Docker uses a client-server architecture
   - process to run inside contaienr
 
 ### Interaction with container
+we can combined with grep and filter
 > docker inspect -f "{{json Json-Key}}" <<Name/ID>> | jq
 - Inspecting container
   - docker using [`Go Template`](https://golang.org/pkg/text/template/) syntax 
