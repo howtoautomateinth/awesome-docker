@@ -47,5 +47,15 @@ Docker uses a client-server architecture
 - echo "Hello World"
   - process to run inside contaienr
 
+### Interaction with container
+> docker inspect -f "{{json <JSON key>}}" <Name/ID> | jq
+- Inspecting container
+  - docker using [`Go Template`](https://golang.org/pkg/text/template/) syntax 
+  - and use [`jq`](https://stedolan.github.io/jq/) for process with JSON
+
+### Anatomy of container
+
+
+
 ## Futhur Reading
 - [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
