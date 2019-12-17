@@ -33,5 +33,19 @@ Docker uses a client-server architecture
   - The Docker registries
     - stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default
 
+### Anatomy of the docker container run expression
+> docker container run alphine echo "Hello World"
+
+- docker 
+  - docker cli
+- container
+  - context
+- run
+  - command
+- alphine
+  - container image
+- echo "Hello World"
+  - process to run inside contaienr
+
 ## Futhur Reading
 - [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
