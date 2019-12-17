@@ -47,12 +47,24 @@ Docker uses a client-server architecture
 - echo "Hello World"
   - process to run inside contaienr
 
-### Interaction with container
-we can combined with grep and filter
+### Useful command for interacting with container
+#### Inspect
 > docker inspect -f "{{json Json-Key}}" <<Name/ID>> | jq
+
+we can combined with grep and filter
 - Inspecting container
   - docker using [`Go Template`](https://golang.org/pkg/text/template/) syntax 
   - and use [`jq`](https://stedolan.github.io/jq/) for process with JSON
+  
+#### Exec
+> docker container exec -i -t <<Name/ID>> /bin/sh 
+- The flag -i signifies that we want to run the additional process interactively, and -t tells Docker that we want it to provide us with a TTY (a terminal emulator) for the command. Finally, the process we run is /bin/sh.
+
+#### Attach
+> docker container attach <<Name/ID>> 
+
+we can attach our Terminal's standard input, output, and error (or any combination of the three) to a running container using the ID or name of the container
+
 
 ### Anatomy of container
 
