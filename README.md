@@ -75,9 +75,13 @@ The UnionFS forms the backbone of what is known as container images.
   
 ### Useful command for interacting with container
 #### Inspect
-> docker inspect -f "{{json Json-Key}}" <<Name/ID>> | jq
+> docker inspect -f '{{.Json-Key}}' <<Name/ID>>
 
-we can combined with grep and filter
+Basic command get information data
+
+> docker inspect -f "{{json .Json-Key}}" <<Name/ID>> | jq
+
+We can combined with grep and filter
 - Inspecting container
   - docker using [`Go Template`](https://golang.org/pkg/text/template/) syntax 
   - and use [`jq`](https://stedolan.github.io/jq/) for process with JSON
