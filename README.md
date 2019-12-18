@@ -34,6 +34,30 @@ Docker uses a client-server architecture
     - stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default
   
 ## Anatomy of container
+> Containers leverage a lot of features and primitives available in the Linux OS. The most important ones are namespaces and cgroups
+
+### Namespace
+A namespace is an abstraction of global resources such as filesystems, network access, process tree (also named PID namespace) or the system group IDs, and user IDs
+
+![Example Namespace](https://i.ibb.co/9TsmM8J/container-and-k8s.png)
+
+### Cgroups
+Linux cgroups are used to limit, manage, and isolate resource usage of collections of processes running on a system. Resources are CPU time, system memory, network bandwidth, or combinations of these resources, and so on.
+
+### Union filesystem (UnionFS)
+The UnionFS forms the backbone of what is known as container images.
+#### The layered filesystem
+...
+#### The writable container layer
+##### Copy-on-write
+...
+
+### Container plumbing 
+#### runc
+...
+
+#### containerd
+...
 
 ### Anatomy of the docker container run expression
 > docker container run alphine echo "Hello World"
