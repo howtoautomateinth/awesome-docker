@@ -81,7 +81,9 @@ we can combined with grep and filter
 - Inspecting container
   - docker using [`Go Template`](https://golang.org/pkg/text/template/) syntax 
   - and use [`jq`](https://stedolan.github.io/jq/) for process with JSON
-  
+ 
+[Example](https://gist.github.com/howtoautomateinth/c2e74527e0c09d2c2a7f1b67e8ff316c) full low-level information 
+
 #### Exec
 > docker container exec -i -t <<Name/ID>> /bin/sh 
 
