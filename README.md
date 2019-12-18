@@ -79,7 +79,7 @@ The UnionFS forms the backbone of what is known as container images.
 
 Basic command get information data
 
-> docker inspect -f "{{json .Json-Key}}" <<Name/ID>> | jq
+> docker inspect -f '{{json .Json-Key}}' <<Name/ID>> | jq
 
 We can combined with grep and filter
 - Inspecting container
