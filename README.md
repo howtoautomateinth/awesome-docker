@@ -33,13 +33,13 @@ Docker uses a client-server architecture
   - The Docker registries
     - stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default
   
-## Anatomy of container
+## Container
 > Containers leverage a lot of features and primitives available in the Linux OS. The most important ones are namespaces and cgroups
 
 ### Namespace
 A namespace is an abstraction of global resources such as filesystems, network access, process tree (also named PID namespace) or the system group IDs, and user IDs
 
-![Example Namespace](https://i.ibb.co/9TsmM8J/container-and-k8s.png)
+![Example Namespace](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/e3ecc488-ad6c-4530-83db-751451b5e3e4.png)
 
 ### Cgroups
 Linux cgroups are used to limit, manage, and isolate resource usage of collections of processes running on a system. Resources are CPU time, system memory, network bandwidth, or combinations of these resources, and so on.
@@ -91,6 +91,20 @@ we can combined with grep and filter
 > docker container attach <<Name/ID>> 
 
 we can attach our Terminal's standard input, output, and error (or any combination of the three) to a running container using the ID or name of the container
+
+## Createing Images
+### Using DockerFiles
+Command List
+- FROM
+- RUN 
+- COPY
+- etc.
+
+## Data Volumes
+...
+
+## Single-Host Networking
+...
 
 ## Futhur Reading
 - [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
