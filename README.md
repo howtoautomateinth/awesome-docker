@@ -47,7 +47,18 @@ Linux cgroups are used to limit, manage, and isolate resource usage of collectio
 ### Union filesystem (UnionFS)
 The UnionFS forms the backbone of what is known as container images.
 #### The layered filesystem
-...
+
+```
+FROM ubuntu:18.04
+COPY . /app
+RUN make /app
+CMD python /app/app.py
+```
+
+![Container Layers](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
+
+![Sharing Layers](https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg)
+
 #### The writable container layer
 ##### Copy-on-write
 ...
