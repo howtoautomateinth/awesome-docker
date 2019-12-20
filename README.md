@@ -44,6 +44,13 @@ A namespace is an abstraction of global resources such as filesystems, network a
 ### Cgroups
 Linux cgroups are used to limit, manage, and isolate resource usage of collections of processes running on a system. Resources are CPU time, system memory, network bandwidth, or combinations of these resources, and so on.
 
+### Container plumbing 
+#### Runc
+Runc is a lightweight, portable container runtime for spawning and running containers.
+
+#### Containerd
+Containerd builds on top of Runc, and adds higher-level features, such as image transfer and storage, container execution, and supervision, as well as network and storage attachments
+
 ### Union filesystem (UnionFS)
 The UnionFS forms the backbone of what is known as container images.
 #### The layered filesystem
@@ -61,13 +68,6 @@ CMD python /app/app.py
 
 #### The writable container layer
 ##### Copy-on-write
-...
-
-### Container plumbing 
-#### runc
-...
-
-#### containerd
 ...
 
 ### Anatomy of the docker container run expression
