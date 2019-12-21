@@ -61,10 +61,15 @@ COPY . /app
 RUN make /app
 CMD python /app/app.py
 ```
+This Dockerfile contains four commands, each of which creates a layer.
 
 ![Container Layers](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
 
+Each layer is only a set of differences from the layer before it. The layers are stacked on top of each other. When you create a new container, you add a new writable layer on top of the underlying layers. This layer is often called the ... container layer
+
 ![Sharing Layers](https://docs.docker.com/storage/storagedriver/images/sharing-layers.jpg)
+
+The major difference between a container and an image is the top writable layer. All writes to the container that add new or modify existing data are stored in this writable layer. When the container is deleted, the writable layer is also deleted. The underlying image remains unchanged.
 
 #### The writable container layer
 ##### Copy-on-write
