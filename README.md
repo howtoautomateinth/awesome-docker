@@ -41,6 +41,8 @@ Docker uses a client-server architecture
 ### Namespace
 A namespace is an abstraction of global resources such as filesystems, network access, process tree (also named PID namespace) or the system group IDs, and user IDs
 
+A Linux system is initialized with a single instance of each namespace type. After initialization, additional namespaces can be created or joined.The PID namespace is what keeps processes in one container from seeing or interacting with processes in another container
+
 ![Example Namespace](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/e3ecc488-ad6c-4530-83db-751451b5e3e4.png)
 
 ### Cgroups
