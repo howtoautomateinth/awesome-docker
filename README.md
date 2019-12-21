@@ -36,6 +36,8 @@ Docker uses a client-server architecture
 ## Container
 > Containers leverage a lot of features and primitives available in the Linux OS. The most important ones are namespaces and cgroups
 
+![Architecuture](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/496ad42f-1bb7-44ef-8a79-a75317bc0e8c.png)
+
 ### Namespace
 A namespace is an abstraction of global resources such as filesystems, network access, process tree (also named PID namespace) or the system group IDs, and user IDs
 
