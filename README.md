@@ -73,7 +73,7 @@ The major difference between a container and an image is the top writable layer.
 
 #### The writable container layer
 ##### Copy-on-write
-...
+If a layer uses a file or folder that is available in one of the low-lying layers, then it just uses it. If, on the other hand, a layer wants to modify, say, a file from a low-lying layer, then it first copies this file up to the target layer and then modifies it
 
 ### Anatomy of the docker container run expression
 > docker container run alphine echo "Hello World"
