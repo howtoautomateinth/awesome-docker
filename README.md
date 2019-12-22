@@ -47,6 +47,7 @@ A Linux system is initialized with a single instance of each namespace type. Aft
 
 ### Cgroups
 Linux cgroups are used to limit, manage, and isolate resource usage of collections of processes running on a system. Resources are CPU time, system memory, network bandwidth, or combinations of these resources, and so on.
+Using cgroups, administrators can limit the resources that containers can consume, to avoid the classical noisy neighbor problem.
 
 ### Container plumbing 
 #### Runc
