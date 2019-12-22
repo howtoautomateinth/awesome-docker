@@ -121,6 +121,12 @@ We can combined with grep and filter
 we can attach our Terminal's standard input, output, and error (or any combination of the three) to a running container using the ID or name of the container
 
 ## Createing Images
+There are 2 ways to create a new container image on your system
+- Interactive image creation
+  - we can create a custom image is by interactively building a container
+  - e.g. with first creation of alpine image it won't have ping tool installed so we can install it and commit and create custom image
+- DockerFiles
+
 ### Using DockerFiles
 Command List
 - FROM
