@@ -163,6 +163,77 @@ Command List
     - if we use only CMD like CMD ["python", "main.py"] it called shell form 
     - if we use ENTRYPOINT and CMD it called exec form 
 
+#### Dockerfile best practices
+- containers are meant to be ephemeral. 
+  - can be stopped and destroyed and a new one built and put in place with an absolute minimum of setup and configuration
+  - minimum initialize the application time
+- we should order the individual commands in the Dockerfile so that we leverage caching as much as possible
+```
+FROM node:9.4
+RUN mkdir -p /app
+WORKIR /app
+COPY . /app
+RUN npm install
+CMD ["npm", "start"]
+```
+to this
+```
+FROM node:9.4
+RUN mkdir -p /app
+WORKIR /app
+COPY package.json /app/
+RUN npm install
+COPY . /app
+CMD ["npm", "start"]
+```
+we only copy the single file that the npm install command needs as a source, which is the package.json file so it's mean if anythings change just reinstall it otherwise just copy it from current directory
+- try to keep the number of layers that make up your image relatively small
+  - The more layers an image has, the more the graph driver needs to work to consolidate the layers into a single root filesystem for the corresponding container and that takes time
+```
+RUN apt-get update
+RUN apt-get install -y ca-certificates
+RUN rm -rf /var/lib/apt/lists/*
+```
+to
+```
+RUN apt-get update \
+    && apt-get install -y ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+```
+- reduce the image size is by using a .dockerignore file to avoid copying unnecessary files and folders into an image to keep it as lean as possible
+- avoid installing unnecessary packages into the filesystem of the image
+- use multistage builds so that the resulting image is as small as possible
+
+#### Multi Stage Build
+technique that have some stages that are used to build the final artifacts and then a final stage where we use the minimal necessary base image and copy the artifacts into the real custom image instead to make "small images"
+
+```
+FROM alpine:3.7
+RUN apk update &&
+apk add --update alpine-sdk
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
+RUN mkdir bin
+RUN gcc -Wall hello.c -o bin/hello
+CMD /app/bin/hello
+```
+to
+```
+FROM alpine:3.7 AS build
+RUN apk update && \
+    apk add --update alpine-sdk
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
+RUN mkdir bin
+RUN gcc hello.c -o bin/hello
+
+FROM alpine:3.7
+COPY --from=build /app/bin/hello /app/hello
+CMD /app/hello
+```
+
 ## Data Volumes
 ...
 
