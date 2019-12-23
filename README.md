@@ -234,7 +234,15 @@ FROM alpine:3.7
 COPY --from=build /app/bin/hello /app/hello
 CMD /app/hello
 ```
-
+#### Image namespaces
+```
+<registry URL>/<User or Org>/<name>:<tag>
+https://registry.acme.com/engineering/web-app:1.0
+```
+we can setup your own namespace like this
+ - Google https://cloud.google.com/container-registry
+ - Microsoft https://azure.microsoft.com/en-us/services/container-registry/
+ 
 ## Data Volumes
 ...
 
