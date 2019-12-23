@@ -186,7 +186,8 @@ RUN npm install
 COPY . /app
 CMD ["npm", "start"]
 ```
-we only copy the single file that the npm install command needs as a source, which is the package.json file so it's mean if anythings change just reinstall it otherwise just copy it from current directory
+we only copy the single file that the npm install command needs as a source, which is the package.json file so it's mean if anythings change just reinstall it otherwise just copy it from previous build (layer cache)
+
 - try to keep the number of layers that make up your image relatively small
   - The more layers an image has, the more the graph driver needs to work to consolidate the layers into a single root filesystem for the corresponding container and that takes time
 ```
