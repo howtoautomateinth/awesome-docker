@@ -120,6 +120,11 @@ We can combined with grep and filter
 
 we can attach our Terminal's standard input, output, and error (or any combination of the three) to a running container using the ID or name of the container
 
+#### Diff
+> docker container diff demo
+
+Use the diff command to find out what has changed in the container's filesystem in relation to the filesystem of the image
+
 ## Createing Images
 There are 2 ways to create a new container image on your system
 - Interactive image to creation new one
@@ -234,6 +239,7 @@ FROM alpine:3.7
 COPY --from=build /app/bin/hello /app/hello
 CMD /app/hello
 ```
+
 #### Image namespaces
 we can setup your own namespace like this
 ```
@@ -245,10 +251,11 @@ or use other public registery
  - Microsoft https://azure.microsoft.com/en-us/services/container-registry/
  
 ## Data Volumes
-...
+
 
 ## Single-Host Networking
 ...
 
 ## Futhur Reading
-- [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
+- Special thanks to [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
+- [Docker Documentation](https://docs.docker.com/engine/docker-overview/)
