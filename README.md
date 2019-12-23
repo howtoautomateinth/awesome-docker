@@ -122,17 +122,46 @@ we can attach our Terminal's standard input, output, and error (or any combinati
 
 ## Createing Images
 There are 2 ways to create a new container image on your system
-- Interactive image creation
+- Interactive image to creation new one
   - we can create a custom image is by interactively building a container
   - e.g. with first creation of alpine image it won't have ping tool installed so we can install it and commit and create custom image
+  - helpful when doing exploration, creating prototypes, or making feasibility studies
 - DockerFiles
-
+  - It contains instructions on how to build a custom container image. It is a declarative way of building images.
+  - Declarative versus Imperative
+    - Declarative Apporach = defining a task
+    - Imperative Apporach = expected outcome and lets the system figure out how to achieve this goal
+    
 ### Using DockerFiles
+
+```
+FROM python:2.7
+RUN mkdir -p /app
+WORKDIR /app
+COPY ./requirements.txt /app/
+RUN pip install -r requirements.txt
+CMD ["python", "main.py"]
+```
+![Image Layer](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/39b09cae-4f1c-4084-ba9c-4b5484cab215.jpg)
+
 Command List
 - FROM
+  - Define which base image we want to start building our custom image from
 - RUN 
-- COPY
-- etc.
+  - The argument for RUN is any valid Linux command
+- COPY and ADD
+  - Add some content to an existing base image to make it a custom image
+  - From a security perspective, it is important to know that by default, all files and folders inside the image will have a user ID (UID) and a group ID (GID) of 0.
+    - so, we can change the ownership that the files will have inside the image using the optional --chown flag
+- WORKDIR
+  - Defines the working directory or context that is used when a container is run from our custom image
+  - if we didn't set it will produce file in the root of the image filesystem but if we it like in above DockerFile "WORKDIR /app" it will produce in that directory
+- CMD and ENTRYPOINT
+  - ENTRYPOINT is used to define the command of the expression (exec form)
+  - CMD is used to define the parameters for the command 
+  - Difference [1](https://stackoverflow.com/questions/47904974/what-are-shell-form-and-exec-form)
+    - if we use only CMD like CMD ["python", "main.py"] it called shell form 
+    - if we use ENTRYPOINT and CMD it called exec form 
 
 ## Data Volumes
 ...
