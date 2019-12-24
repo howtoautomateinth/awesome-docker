@@ -268,8 +268,8 @@ or use other public registery
     }
 ]
 ```
-  - The host folder can be found in the output under Mountpoint.
-  - and then we can mount it with then all the data that are going to write in that container will write in named-my-data instead
+  -- The host folder can be found in the output under Mountpoint.
+  -- and then we can mount it with then all the data that are going to write in that container will write in named-my-data instead
 ```
 docker container run --name test -it \
      -v named-my-data:/data alpine /bin/sh
@@ -301,6 +301,7 @@ docker container run --rm -it \
   - $(pwd) means current directory in [linux command](https://www.howtoforge.com/linux-pwd-command/)
     - $() mean [command substitution](http://www.tldp.org/LDP/abs/html/commandsub.html) in linux. other word is execute subshell and the output is then placed in the original command
     - there also have ${} mean [parameter substitution](https://superuser.com/questions/935374/difference-between-and-in-shell-script)
+    
 ```
 $ animal=cat
 $ echo $animals
@@ -312,9 +313,38 @@ $ echo $animal_food
 $ echo ${animal}_food
 cat_food
 ```
+### Volumes in images
+Some applications, such as databases running in containers, need to persist their data beyond the lifetime of the container. In this case they can use volumes
+```
+VOLUME /app/data 
+VOLUME /app/data, /app/profiles, /app/config 
+VOLUME ["/app/data", "/app/profiles", "/app/config"] 
+```
+Docker automatically creates a volume and mounts it to the corresponding target folder of the container for each path defined in the Dockerfile
+  - the folders defined as volumes in the Dockerfile are excluded from the union filesystem and thus any changes in those folders do not change the container layer but are persisted to the respective volume
 
 ## Single-Host Networking
-...
+### Network drivers
+- bridge
+  - default network driver
+  - apply to containers running on the same Docker daemon host
+![bridge](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/12001484-deda-4e11-b3f1-d0c7b0f1bf4d.png)
+- host
+  - host network
+  - container’s network stack is not isolated from the Docker host (the container shares the host’s networking namespace), and the container does not get its own IP-address allocated (use host IP)
+- overlay
+  - creates a distributed network among multiple Docker daemon hosts
+  - container different Docker daemon hosts, you can either manage routing at the OS level, or you can use an overlay network
+- macvlan
+  - Some applications, especially legacy applications or applications which monitor network traffic, expect to be directly connected to the physical network
+  - network driver to assign a MAC address to each container’s virtual network interface
+- none
+  - completely disable the networking stack on a container
+  
+### Port management
+![port mgmt.](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/c52dccf3-b0ef-42ac-a484-e9352f0b9fd8.png)
+> docker container run --name web2 -p 8080:80 -d nginx:alpine
+-p parameter <host port>:<container port>
 
 ## Futhur Reading
 - Special thanks to [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
