@@ -251,7 +251,65 @@ or use other public registery
  - Microsoft https://azure.microsoft.com/en-us/services/container-registry/
  
 ## Data Volumes
-
+2 ways to interact with data volumes
+- named volume
+  - create a named volume which can then be mounted into a container and be used for persistent data access or storage 
+  - > docker volume create named-my-data 
+``` $ docker volume inspect named-my-data 
+[
+    {
+        "CreatedAt": "2019-12-24T04:35:44Z",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/named-my-data/_data",
+        "Name": "named-my-data",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+```
+  - The host folder can be found in the output under Mountpoint.
+  - and then we can mount it with then all the data that are going to write in that container will write in named-my-data instead
+```
+docker container run --name test -it \
+     -v named-my-data:/data alpine /bin/sh
+```
+  - removing volume
+```
+docker volume rm named-my-data 
+```
+  - Sharing data between containers
+    - an application running in container A produces some data that will be consumed by another application running in container B
+    - to provide race conditions on concurrency problems we have to set it to read-only mode for reader and writer
+    - using keyword ":ro" read-only on the reader node
+```
+docker container run -it --name reader \
+    -v named-shared-data:/app/data:ro \
+    ubuntu:17.04 /bin/bash
+```
+- host volume
+  - it is very useful to use volumes that mount a specific host folder
+    - developing new containerized application
+    - a legacy application that needs to consume data from a certain folder produced
+```
+docker container run --rm -it \
+    -v $(pwd)/src:/app/src \
+    alpine:latest /bin/sh
+```
+  - $(pwd) means current directory in [linux command](https://www.howtoforge.com/linux-pwd-command/)
+    - $() mean [command substitution](http://www.tldp.org/LDP/abs/html/commandsub.html) in linux. other word is execute subshell and the output is then placed in the original command
+    - there also have ${} mean [parameter substitution](https://superuser.com/questions/935374/difference-between-and-in-shell-script)
+```
+$ animal=cat
+$ echo $animals
+                                # No such variable as “animals”.
+$ echo ${animal}s
+cats
+$ echo $animal_food
+                                # No such variable as “animal_food”.
+$ echo ${animal}_food
+cat_food
+```
 
 ## Single-Host Networking
 ...
