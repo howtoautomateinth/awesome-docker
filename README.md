@@ -291,6 +291,8 @@ docker container run -it --name reader \
   - it is very useful to use volumes that mount a specific host folder
     - developing new containerized application
     - a legacy application that needs to consume data from a certain folder produced
+    - Edit-and-continue experience
+    - If you make changes on the host they will be propagated to the container and vice versa
 ```
 docker container run --rm -it \
     -v $(pwd)/src:/app/src \
