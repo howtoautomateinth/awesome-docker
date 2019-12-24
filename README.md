@@ -345,7 +345,7 @@ Docker automatically creates a volume and mounts it to the corresponding target 
 ![port mgmt.](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/assets/c52dccf3-b0ef-42ac-a484-e9352f0b9fd8.png)
 > docker container run --name web2 -p 8080:80 -d nginx:alpine
 
--p parameter for <host port>:<container port>
+-p parameter for "host port":"container port"
 
 ## Futhur Reading
 - Special thanks to [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
