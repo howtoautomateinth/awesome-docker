@@ -347,6 +347,13 @@ Docker automatically creates a volume and mounts it to the corresponding target 
 
 -p parameter for "host port":"container port"
 
+## Docker Compose
+> Compose is a tool for defining and running multi-container Docker applications
+
+Docker Compose uses files formatted in YAML as input. By default, Docker Compose expects these files to be called docker-compose.yml, but other names are possible
+
+Also can extend other services in [docker-compose](https://serversforhackers.com/dockerized-app/compose-separated)
+
 ## Futhur Reading
 - Special thanks to [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
 - [Docker Documentation](https://docs.docker.com/engine/docker-overview/)
