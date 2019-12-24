@@ -350,9 +350,12 @@ Docker automatically creates a volume and mounts it to the corresponding target 
 ## Docker Compose
 > Compose is a tool for defining and running multi-container Docker applications
 
-Docker Compose uses files formatted in YAML as input. By default, Docker Compose expects these files to be called docker-compose.yml, but other names are possible
+Docker Compose uses files formatted in YAML as input. By default, Docker Compose expects these files to be called docker-compose.yml, but other names are possible e.g. docker-compose.yml or docker-compose.override.yml
 
-Also can extend other services in [docker-compose](https://serversforhackers.com/dockerized-app/compose-separated)
+Also can extend other services in [docker-compose.yml](https://serversforhackers.com/dockerized-app/compose-separated)
+
+### Tips
+- we can just let Docker decide which host port to use for each instance by only specify the container port and leave out the host port, then Docker automatically selects an ephemeral port
 
 ## Futhur Reading
 - Special thanks to [Learn Docker Fundamental 18.x](https://learning.oreilly.com/library/view/learn-docker-/9781788997027/)
